@@ -27,8 +27,42 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: Center(
+                child: Text(
+              "Questions Will Be Here !",
+                  textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            )),
+          ),
+
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FlatButton(
+              onPressed: (){},
+              color: Colors.green,
+              child: Text("TRUE",style: TextStyle(color: Colors.white,fontSize: 17),),
+            ),
+          )),
+
+
+          Expanded(child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: FlatButton(
+              onPressed: (){},
+              color: Colors.red,
+              child: Text("FALSE",style: TextStyle(color: Colors.white,fontSize: 17),),
+            ),
+          )),
+        ],
+      ),
+    );
   }
 }
-
-
