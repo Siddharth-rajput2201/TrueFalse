@@ -31,6 +31,21 @@ class _QuizPageState extends State<QuizPage> {
 
   List<Widget> ticks = [];
 
+  List<String> questions = [
+    '1st Question ',
+    '2nd Question ',
+    '3rd Question ',
+  ];
+
+  int questionnum = 0;
+
+  void questioncounter()
+  {
+    setState(() {
+      questionnum = questionnum + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,7 +58,7 @@ class _QuizPageState extends State<QuizPage> {
             flex: 5,
             child: Center(
                 child: Text(
-              "Questions Will Be Here ",
+              questions[questionnum],
                   textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 20),
             )),
@@ -53,6 +68,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
+                questioncounter();
                 setState(() {
                   ticks.add(Icon(Icons.check , color: Colors.green,));
                 });
@@ -67,6 +83,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
+                questioncounter();
                 setState(() {
                   ticks.add(Icon(Icons.close , color: Colors.red,));
                 });
