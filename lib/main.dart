@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:truefalse/question_class.dart';
 
 void main() {
   runApp(TrueFalse());
@@ -31,20 +32,63 @@ class _QuizPageState extends State<QuizPage> {
 
   List<Widget> ticks = [];
 
+/*
   List<String> questions = [
     '1st Question ',
     '2nd Question ',
     '3rd Question ',
   ];
 
+  List<bool> answers = [
+    true,
+    false,
+    true,
+  ];
+
+  Questions q1 = Questions(q: "1st Question" , a: false);
+*/
+
+  List<Questions> questionanswerlist = [
+    Questions(q: "1st Question" , a: true),
+    Questions(q: "1st Question" , a: false),
+    Questions(q: "1st Question" , a: true),
+  ];
+
   int questionnum = 0;
 
-  void questioncounter()
-  {
+  void questioncounter() {
     setState(() {
       questionnum = questionnum + 1;
     });
   }
+
+  void answercheckfortrue()
+  {
+    bool correctanswer = questionanswerlist[questionnum].questionanswer;
+    if(correctanswer == true)
+      {
+        print("Correct Answer");
+      }
+    else
+      {
+        print("Incorrect Answer");
+      }
+  }
+
+
+  void answercheckfortfalse()
+  {
+    bool correctanswer = questionanswerlist[questionnum].questionanswer;
+    if(correctanswer == false)
+    {
+      print("Correct Answer");
+    }
+    else
+    {
+      print("Incorrect Answer");
+    }
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +102,7 @@ class _QuizPageState extends State<QuizPage> {
             flex: 5,
             child: Center(
                 child: Text(
-              questions[questionnum],
+              questionanswerlist[questionnum].questionstext,
                   textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 20),
             )),
@@ -68,6 +112,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
+                answercheckfortrue();
                 questioncounter();
                 setState(() {
                   ticks.add(Icon(Icons.check , color: Colors.green,));
@@ -83,6 +128,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
+                answercheckfortfalse();
                 questioncounter();
                 setState(() {
                   ticks.add(Icon(Icons.close , color: Colors.red,));
