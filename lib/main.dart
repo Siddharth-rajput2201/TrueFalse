@@ -31,7 +31,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
 
-  List<Widget> ticks = [];
+
 
 /*
   List<String> questions = [
@@ -54,10 +54,6 @@ class _QuizPageState extends State<QuizPage> {
     Questions(q: "1st Question" , a: false),
     Questions(q: "1st Question" , a: true),
   ];
-*/
-  int questionnum = 0;
-
-  Brain truefalsebrain =  Brain();
 
   void questioncounter() {
     setState(() {
@@ -65,9 +61,13 @@ class _QuizPageState extends State<QuizPage> {
     });
   }
 
+*/
+
+  Brain truefalsebrain =  Brain();
+
   void answercheckfortrue()
   {
-    bool correctanswer = truefalsebrain.questionanswerlist[questionnum].questionanswer;
+    bool correctanswer = truefalsebrain.getanswertext();
     if(correctanswer == true)
       {
         print("Correct Answer");
@@ -81,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void answercheckfortfalse()
   {
-    bool correctanswer = truefalsebrain.questionanswerlist[questionnum].questionanswer;
+    bool correctanswer = truefalsebrain.getanswertext();
     if(correctanswer == false)
     {
       print("Correct Answer");
@@ -105,7 +105,7 @@ class _QuizPageState extends State<QuizPage> {
             flex: 5,
             child: Center(
                 child: Text(
-              truefalsebrain.questionanswerlist[questionnum].questionstext,
+                  truefalsebrain.getquestiontext(),
                   textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 20),
             )),
@@ -116,9 +116,8 @@ class _QuizPageState extends State<QuizPage> {
             child: FlatButton(
               onPressed: (){
                 answercheckfortrue();
-                questioncounter();
                 setState(() {
-                  ticks.add(Icon(Icons.check , color: Colors.green,));
+                  truefalsebrain.questioncounter();
                 });
               },
               color: Colors.green,
@@ -132,21 +131,14 @@ class _QuizPageState extends State<QuizPage> {
             child: FlatButton(
               onPressed: (){
                 answercheckfortfalse();
-                questioncounter();
                 setState(() {
-                  ticks.add(Icon(Icons.close , color: Colors.red,));
+                  truefalsebrain.questioncounter();
                 });
               },
               color: Colors.red,
               child: Text("FALSE",style: TextStyle(color: Colors.white,fontSize: 17),),
             ),
           )),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: ticks,
-            ),
-          )
         ],
       ),
     );
