@@ -65,32 +65,23 @@ class _QuizPageState extends State<QuizPage> {
 
   Brain truefalsebrain =  Brain();
 
-  void answercheckfortrue()
+  void answercheck(bool userpickedanswer)
   {
     bool correctanswer = truefalsebrain.getanswertext();
-    if(correctanswer == true)
+    if(correctanswer == userpickedanswer)
       {
         print("Correct Answer");
+        ticks.add(Icon(Icons.check ,color:  Colors.green,));
       }
     else
       {
         print("Incorrect Answer");
+        ticks.add(Icon(Icons.close ,color:  Colors.red,));
       }
   }
 
 
-  void answercheckfortfalse()
-  {
-    bool correctanswer = truefalsebrain.getanswertext();
-    if(correctanswer == false)
-    {
-      print("Correct Answer");
-    }
-    else
-    {
-      print("Incorrect Answer");
-    }
-  }
+  List<Icon> ticks = [];
 
 
   @override
@@ -115,9 +106,10 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
-                answercheckfortrue();
+
                 setState(() {
                   truefalsebrain.questioncounter();
+                  answercheck(true);
                 });
               },
               color: Colors.green,
@@ -130,15 +122,17 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(8.0),
             child: FlatButton(
               onPressed: (){
-                answercheckfortfalse();
+
                 setState(() {
                   truefalsebrain.questioncounter();
+                  answercheck(false);
                 });
               },
               color: Colors.red,
               child: Text("FALSE",style: TextStyle(color: Colors.white,fontSize: 17),),
             ),
           )),
+          Row(children: ticks,)
         ],
       ),
     );
