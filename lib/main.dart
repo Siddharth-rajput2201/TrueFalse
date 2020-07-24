@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:truefalse/question_class.dart';
+import 'package:truefalse/brain.dart';
+
 
 void main() {
   runApp(TrueFalse());
@@ -46,15 +47,17 @@ class _QuizPageState extends State<QuizPage> {
   ];
 
   Questions q1 = Questions(q: "1st Question" , a: false);
-*/
 
-  List<Questions> questionanswerlist = [
+
+  List<Questions> truefalsebrain.questionanswerlist = [
     Questions(q: "1st Question" , a: true),
     Questions(q: "1st Question" , a: false),
     Questions(q: "1st Question" , a: true),
   ];
-
+*/
   int questionnum = 0;
+
+  Brain truefalsebrain =  Brain();
 
   void questioncounter() {
     setState(() {
@@ -64,7 +67,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void answercheckfortrue()
   {
-    bool correctanswer = questionanswerlist[questionnum].questionanswer;
+    bool correctanswer = truefalsebrain.questionanswerlist[questionnum].questionanswer;
     if(correctanswer == true)
       {
         print("Correct Answer");
@@ -78,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
 
   void answercheckfortfalse()
   {
-    bool correctanswer = questionanswerlist[questionnum].questionanswer;
+    bool correctanswer = truefalsebrain.questionanswerlist[questionnum].questionanswer;
     if(correctanswer == false)
     {
       print("Correct Answer");
@@ -102,7 +105,7 @@ class _QuizPageState extends State<QuizPage> {
             flex: 5,
             child: Center(
                 child: Text(
-              questionanswerlist[questionnum].questionstext,
+              truefalsebrain.questionanswerlist[questionnum].questionstext,
                   textAlign: TextAlign.center,
               style: TextStyle(color: Colors.white, fontSize: 20),
             )),
